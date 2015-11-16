@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>customers Test Home Page</title>
+    <script src="/Scripts/jquery-1.8.2.js" type="text/javascript"></script>
+    <script src="/Scripts/knockout-2.2.0.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/Scripts/CustomJS/get.js"></script>
+    <script type="text/javascript" src="/Scripts/CustomJS/post.js"></script>
+    <script type="text/javascript" src="/Scripts/CustomJS/delete.js"></script>
+    <script type="text/javascript" src="/Scripts/CustomJS/getbyId.js"></script>
+</head>
+<body>
+
+    <div id="content">
+
+        <ul data-bind="template: {name: 'customerTemplate', foreach: customers}"></ul>
+
+        <form id="newCustomerForm">
+            <fieldset>
+                <legend>New Customer</legend>
+
+                <br />
+                <label for="customername">Customer Name</label>
+                <input id="customername" name="name" type="text" value="" />
+                <br />
+                <label for="moneyamount">Initial Funds</label>
+                <input id="moneyamount" name="text" type="text" value="" />
+                <br />
+                <input id="id" name="text" type="text" value="" style="display: none" />
+                <br />
+
+                <input type="button" id="resetBtn" value="Reset" />
+                <input type="button" id="sendBtn" value="Send" />
+            </fieldset>
+        </form>
+
+        <script id="customerTemplate" type="text/html">
+            <li class="customer">
+                <header>
+                    <div class="info">
+                        <!--<img data-bind="attr: {src: GravatarUrl}"/>-->
+                        <strong><span data-bind="text: Name"></span></strong>
+                    </div>
+                    <div class="actions">
+                        <a class="delete" data-bind="attr: { 'data-customer-id': ID }" href="#">Delete Id: <span data-bind="text: ID" /></a>
+                    </div>
+                    <div class="actions">
+                        <a class="select" data-bind="attr: { 'data-customer-id': ID }" href="#">Select Id: <span data-bind="text: ID" /></a>
+                    </div>
+                </header>
+                <div class="body">
+                    <p data-bind="text: Money">  </p>
+
+                </div>
+            </li>
+        </script>
+        <script type="text/javascript">
+            viewModel = {
+                customers: ko.observableArray([])
+            };
+
+            ko.applyBindings(viewModel);
+        </script>
+    </div>
+</body>
+</html>
